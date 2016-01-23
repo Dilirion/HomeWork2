@@ -18,24 +18,16 @@ namespace Model
 
         public string Name { get; }
 
-        public int Experience => (DateTime.Today).Year - LisenceDate.Year;
+        public int Experience => (DateTime.Today - LisenceDate).Days/365;
 
         public string Category { get; set; }
 
         public void OwnCar(Car car)
         {
-            try
+            if (Category.Contains(car.Category)) Car = car;
+            else
             {
-                if (Category.Contains(car.Category)) Car = car;
-                else
-                {
-                    throw new CategoryException();
-                }
-
-            }
-            catch (CategoryException e)
-            {
-                Console.WriteLine("Не получилось закрепить автомобиль. Сообщение: " + e.Message);
+                throw new CategoryException();
             }
         }
 

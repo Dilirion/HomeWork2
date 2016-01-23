@@ -26,11 +26,25 @@ namespace View
 
             instructor.Category += "BC";
 
-            lada.ChangeOwner(instructor, "o777ooo");
+            try
+            {
+                lada.ChangeOwner(instructor, "o777ooo");
+            }
+            catch (CategoryException e)
+            {
+                Console.WriteLine("Не получилось изменить владельца. Сообщение: " + e.Message);
+            }
 
             instructor.Category += "D";
 
-            lada.ChangeOwner(instructor, "o777ooo");
+            try
+            {
+                lada.ChangeOwner(instructor, "o777ooo");
+            }
+            catch (CategoryException e)
+            {
+                Console.WriteLine("Не получилось изменить владельца. Сообщение: " + e.Message);
+            }
 
             Console.WriteLine(instructor.Car.CarNumber);
 

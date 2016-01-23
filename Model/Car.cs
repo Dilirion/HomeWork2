@@ -23,9 +23,16 @@ namespace Model
 
         public void ChangeOwner(Driver newOwner, string newNumber)
         {
-            CarPassport.Owner = newOwner;
-            CarPassport.Owner.OwnCar(this);
-            CarNumber = newNumber;
+            if (newOwner.Category.Contains(Category))
+            {
+                CarPassport.Owner = newOwner;
+                CarPassport.Owner.OwnCar(this);
+                CarNumber = newNumber;
+            }
+            else
+            {
+                throw new CategoryException();
+            }
         }
     }
 }
